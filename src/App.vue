@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <index msg="Welcome to Your Vue.js App"/>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="rrweb录屏" name="rrweb">
+        <rr-web msg="Welcome to Your Vue.js App"/>
+      </el-tab-pane>
+      <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script>
-import index from './views/index.vue'
+import rrWeb from './components/rrWeb.vue'
 
 export default {
   name: 'App',
   components: {
-    index
-  }
+    rrWeb
+  },
+  data() {
+    return {
+      activeName: 'rrweb'
+    };
+  },
 }
 </script>
 
@@ -22,6 +32,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>

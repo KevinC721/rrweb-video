@@ -65,6 +65,7 @@ export default {
         return {
             eventsMatrix : [[]],  // 使用二维数组来存放多个 event 数组
             showReplay: false,
+            interval: '',
             form: {
                 name: '',
                 region: '',
@@ -147,8 +148,11 @@ export default {
                     logger: window.console,
                 })],
             });
+            this.getParams()
         },
         replay() {
+          clearInterval(this.interval)
+            // ! 清除完定时器后需要把当前的数据传递给后端，然后在清除定时器
             console.log('最近的操作记录: ', JSON.stringify(this.eventsMatrix[this.eventsMatrix.length - 1]));
             if(this.eventsMatrix[this.eventsMatrix.length - 1].length<=0) return this.$message.error("请先点击录制按钮进行录制！");
             this.stopFn();
@@ -170,7 +174,22 @@ export default {
         reset() {
             this.showReplay = false
             location.reload()
+        },
+
+        getParams() {
+          // ! 这里需要判断一下当前是否正在录制，没有录制的话就不需要传值
+          var i = 0
+          
+          this.interval = setInterval(() => {
+            i++
+            var newArr = this.eventsMatrix.concat()
+            console.log(`第${i}组数据`, newArr);
+            this.eventsMatrix = [[]]
+          }, 5000)
         }
+    },
+    mounted() {
+      
     }
 }
 </script>

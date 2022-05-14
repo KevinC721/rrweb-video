@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-model="activeName">
       <el-tab-pane label="rrweb录屏" name="rrweb">
         <rr-web msg="Welcome to Your Vue.js App"/>
       </el-tab-pane>
       <el-tab-pane label="配置管理" name="leaderpage">
-        <original-page />
+        <!-- <original-page /> -->
       </el-tab-pane>
     </el-tabs>
   </div>
